@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import Logo from '../../assets/logo.png'
 
 
 
@@ -46,8 +47,9 @@ function NavBar() {
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
             <a href="#">
-              <img className="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="" />
+              <img className="w-auto h-12 shadow-sm" src={Logo} alt="" />
             </a>
+            
             <div className="flex lg:hidden">
 
             <button
