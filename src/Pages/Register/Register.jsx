@@ -2,8 +2,27 @@ import { Link } from 'react-router-dom'
 import regpic from './../../assets/regpage.json'
 import { Player } from '@lottiefiles/react-lottie-player'
 import { Helmet } from 'react-helmet-async'
+import { useContext } from 'react'
+import { AuthContext } from '../../Context/OurContext'
+import Swal from 'sweetalert2'
+import { updateProfile } from 'firebase/auth'
+import auth from '../../Firebase/firebase.config'
+import load from './../../assets/errorpic.json'
 
 const Register = () => {
+
+const { createUser, loading } = useContext(AuthContext)
+
+if(loading){
+    return <Player
+    autoplay
+    loop
+    src={load}
+    style={{ height: '600px', width: '560px' }}
+  >
+  </Player>
+}
+
 
 const handleSubmit = e => {
 e.preventDefault()
@@ -12,8 +31,33 @@ const name = form.name.value;
 const photoUrl = form.photo.value;
 const email = form.email.value;
 const password = form.password.value;
-const currentUser = {name,photoUrl, email, password}
-console.log('cuurent user',currentUser)
+createUser(email, password)
+.then((userCredential) => {
+    const user = userCredential.user;
+    console.log('User created successfully:', user);
+    updateProfile(auth.currentUser, {
+        displayName: name, photoURL:photoUrl
+      }).then(() => {
+        console.log('profile updated')
+        Swal.fire({
+          icon: 'success',
+          title: 'Registration Successfull',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }).catch((error) => {
+        console.log(error.message)
+      });
+       console.log(user)
+  })
+  .catch((error) => {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.message,
+      })
+    console.error('Error creating user:', error.message);
+  });
 
 }
 

@@ -73,7 +73,7 @@ const Reviews = () => {
         <div className="flex items-start max-w-6xl mx-auto mt-16">
 
         <div ref={sliderRef} className="keen-slider">
-     {reviews.map(review => <div className="keen-slider__slide">
+     {reviews.map(review => <div key={review.id} className="keen-slider__slide">
         <div>
             <p className="flex items-center text-center text-gray-500 lg:mx-8">
             {review.review}
