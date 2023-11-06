@@ -59,10 +59,9 @@ function NavBar() {
       <div className="container px-6 py-4 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
-            <a href="#">
+            <Link to={'/'}>
               <img className="w-auto h-12 shadow-sm" src={Logo} alt="" />
-            </a>
-            
+            </Link>
             <div className="flex lg:hidden">
             <button
       onClick={toggleMenu}

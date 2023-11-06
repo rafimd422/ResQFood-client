@@ -8,6 +8,7 @@ import ManageFoods from '../Pages/ManageFoods/ManageFoods';
 import FoodRequest from '../Pages/FoodRequest/FoodRequest';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
+import Home from './../Pages/Home/Home';
 
 const Root = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ const Root = createBrowserRouter([
       element: <Main/>,
       errorElement:<ErrorPage/>,
       children:[
+        {
+          path:'/',
+          element: <Home />
+        },
         {
           path:'/availablefoods',
           element: <AvailableFoods />
