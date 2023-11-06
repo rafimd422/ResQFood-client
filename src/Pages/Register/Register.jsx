@@ -4,9 +4,23 @@ import { Player } from '@lottiefiles/react-lottie-player'
 import { Helmet } from 'react-helmet-async'
 
 const Register = () => {
+
+const handleSubmit = e => {
+e.preventDefault()
+const form = e.target;
+const name = form.name.value;
+const photoUrl = form.photo.value;
+const email = form.email.value;
+const password = form.password.value;
+const currentUser = {name,photoUrl, email, password}
+console.log('cuurent user',currentUser)
+
+}
+
+
+
+
   return (
-
-
 <>
 <Helmet>
 <title>ResQFood | Register</title>
@@ -29,28 +43,28 @@ const Register = () => {
      <h2 className="mb-3 text-3xl font-bold text-center">Register Now</h2>
  
 
-     <form className="space-y-8">
+     <form className="space-y-8" onSubmit={handleSubmit}>
          <div className="space-y-4">
              <div className="space-y-2">
-                 <label for="name" className="block text-sm">Name</label>
+                 <label htmlFor="name" className="block text-sm">Name</label>
                  <input type="text" name="name" id="name" required placeholder="Enter Your Name" className="w-full px-3 py-2 border rounded-md border-gray-700  focus:border-blue-400" />
              </div>
              <div className="space-y-2">
-                 <label for="photo" className="block text-sm">Photo URL</label>
-                 <input type="url" name="photo" id="photo" placeholder="Your Photo URL" className="w-full px-3 py-2 border rounded-md border-gray-700  focus:border-blue-400" />
+                 <label htmlFor="photo" className="block text-sm">Photo URL</label>
+                 <input type="url" required name="photo" id="photo" placeholder="Your Photo URL" className="w-full px-3 py-2 border rounded-md border-gray-700  focus:border-blue-400" />
              </div>
              <div className="space-y-2">
-                 <label for="email" className="block text-sm">Email address</label>
-                 <input type="email" name="email" id="email" placeholder="Enter Your Email" className="w-full px-3 py-2 border rounded-md border-gray-700  focus:border-blue-400" />
+                 <label htmlFor="email" className="block text-sm">Email address</label>
+                 <input type="email" required name="email" id="email" placeholder="Enter Your Email" className="w-full px-3 py-2 border rounded-md border-gray-700  focus:border-blue-400" />
              </div>
              <div className="space-y-2">
                  <div className="flex justify-between">
-                     <label for="password" className="text-sm">Password</label>
+                     <label htmlFor="password" className="text-sm">Password</label>
                  </div>
-                 <input type="password" name="password" id="password" placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md border-gray-700  focus:border-blue-400" />
+                 <input type="password" required name="password" id="password" placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md border-gray-700  focus:border-blue-400" />
              </div>
          </div>
-         <button type="button" className="w-full px-8 py-3 font-semibold rounded-md hover:bg-gray-900 bg-gray-800 text-white">Sign Up</button>
+         <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md hover:bg-gray-900 bg-gray-800 text-white">Sign Up</button>
      </form>
 
      <div className="flex items-center w-full my-4">
