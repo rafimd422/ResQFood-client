@@ -7,6 +7,7 @@ import AddFood from '../Pages/AddFood/AddFood';
 import ManageFoods from '../Pages/ManageFoods/ManageFoods';
 import FoodRequest from '../Pages/FoodRequest/FoodRequest';
 import Login from '../Pages/Login/Login';
+import Register from '../Pages/Register/Register';
 
 const Root = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const Root = createBrowserRouter([
         {
           path:'/login',
           element: <Login />
+        },
+        {
+          path:'/register',
+          element: <Register />
         },
       ]
     },

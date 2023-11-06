@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom'
 import loginPic from './../../assets/loginpage.mp4'
 
 
 const Login = () => {
   return (
     <div className='lg:h-screen max-h-fit flex items-center xl:justify-around lg:justify-between justify-center flex-wrap'>
+
    <video className='xl:w-[680px] sm:w-[400px] md:w-[460px]'>
   <source src={loginPic} type="video/mp4" />
 </video>
@@ -48,7 +50,7 @@ const Login = () => {
 		</div>
 		<button type="button" className="w-full px-8 py-3 font-semibold rounded-md hover:bg-gray-900 bg-gray-800 text-white">Sign in</button>
         <p className="text-sm text-center text-gray-400">Dont have account?
-		<a href="#" rel="noopener noreferrer" className="focus:underline hover:underline text-green-600"> Sign up</a>
+		<Link to={'/register'} rel="noopener noreferrer" className="focus:underline hover:underline text-green-600"> Sign up</Link>
 	</p>
 	</form>
 </div>
