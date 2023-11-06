@@ -6,7 +6,7 @@ export const AuthContext = createContext(null)
 
 
 const OurContext = ({children}) => {
-    // const [toggle, setToggle] = useState(localStorage.getItem('toggle') === 'true' || false);
+
 
 
 const AuthValue = {}

@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom'
 import loginPic from './../../assets/loginpage.mp4'
+import { Helmet } from 'react-helmet-async'
 
 
 const Login = () => {
   return (
+    <>
+    
+    <Helmet>
+    <title>ResQFood | Log In</title>
+  </Helmet>
+
     <div className='lg:h-screen max-h-fit flex items-center xl:justify-around lg:justify-between justify-center flex-wrap'>
 
    <video className='xl:w-[680px] sm:w-[400px] md:w-[460px]'>
@@ -51,6 +58,7 @@ const Login = () => {
 </div>
 
     </div>
+    </>
   )
 }
 

@@ -1,10 +1,19 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async';
 
 const ManageFoods = () => {
   return (
-    <div>
+    
+<>
+
+<Helmet>
+<title>ResQFood | Manage Foods</title>
+</Helmet>
+
+<div>
       Manage your Foods
     </div>
+</>
   )
 }
 

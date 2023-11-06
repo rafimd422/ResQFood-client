@@ -47,7 +47,7 @@ function NavBar() {
     </NavLink>
 <Link
       to="/login"
-      className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 bg-green-800 hover:bg-gray-100"
+      className="px-3 py-2 mx-3 mt-2 font-semibold text-white transition-colors duration-300 transform rounded-md lg:mt-0 bg-green-800 hover:bg-green-600 w-fit ms-6"
     >
       <button>Log In</button>
     </Link>

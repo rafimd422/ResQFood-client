@@ -1,11 +1,14 @@
-import React from 'react'
+import { Helmet } from "react-helmet-async";
 
 const AvailableFoods = () => {
   return (
-    <div>
-      AvailableFoods
-    </div>
-  )
-}
+    <>
+      <Helmet>
+        <title>ResQFood | Available Foods</title>
+      </Helmet>
+      <div>AvailableFoods</div>
+    </>
+  );
+};
 
-export default AvailableFoods
+export default AvailableFoods;

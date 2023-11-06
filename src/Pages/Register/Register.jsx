@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom'
 import regpic from './../../assets/regpage.json'
 import { Player } from '@lottiefiles/react-lottie-player'
+import { Helmet } from 'react-helmet-async'
 
 const Register = () => {
   return (
+
+
+<>
+<Helmet>
+<title>ResQFood | Register</title>
+</Helmet>
+
     <div className='lg:h-screen max-h-fit flex items-center xl:justify-around flex-row-reverse lg:justify-between justify-center flex-wrap'>
 
 
@@ -16,8 +24,6 @@ const Register = () => {
   src={regpic}
 />
 </div>
-
-
 
  <div className="w-full max-w-md h-fit p-4 rounded-md shadow sm:p-8 ">
      <h2 className="mb-3 text-3xl font-bold text-center">Register Now</h2>
@@ -43,9 +49,8 @@ const Register = () => {
                  </div>
                  <input type="password" name="password" id="password" placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md border-gray-700  focus:border-blue-400" />
              </div>
- 
          </div>
-         <button type="button" className="w-full px-8 py-3 font-semibold rounded-md hover:bg-gray-900 bg-gray-800 text-white">Sign in</button>
+         <button type="button" className="w-full px-8 py-3 font-semibold rounded-md hover:bg-gray-900 bg-gray-800 text-white">Sign Up</button>
      </form>
 
      <div className="flex items-center w-full my-4">
@@ -68,6 +73,7 @@ const Register = () => {
  </div>
  
      </div>
+</>
   )
 }
 
