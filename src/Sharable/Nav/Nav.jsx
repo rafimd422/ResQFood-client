@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/logo.png'
-
+import './nav.css'
+import { Link } from 'react-router-dom';
 
 
 function NavBar() {
@@ -15,34 +16,46 @@ function NavBar() {
 
   const NavRoutes = <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
     <NavLink
-      to="/availablefood"
-      className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover-bg-gray-700"
+      to="/"
+      className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
+    >
+      Home
+    </NavLink>
+    <NavLink
+      to="/availablefoods"
+      className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
     >
       Available Foods
     </NavLink>
     <NavLink
-      to="/browse-topics"
-      className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover-bg-gray-700"
+      to="/addfoods"
+      className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
     >
       Add Food
     </NavLink>
     <NavLink
-      to="/random-item"
-      className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover-bg-gray-700"
+      to="/managefoods"
+      className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
     >
       Manage My foods
     </NavLink>
 <NavLink
-      to="/experts"
-      className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover-bg-gray-700"
+      to="/foodreqlist"
+      className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
     >
       My Food Request
     </NavLink>
+<Link
+      to="/login"
+      className="px-3 py-2 mx-3 mt-2 text-white transition-colors duration-300 transform rounded-md lg:mt-0 bg-green-800 hover:bg-gray-100"
+    >
+      <button>Log In</button>
+    </Link>
   </div>
 
 
   return (
-    <nav className="relative bg-white shadow dark:bg-gray-800">
+    <nav className="relative bg-white shadow ">
       <div className="container px-6 py-4 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
@@ -51,11 +64,10 @@ function NavBar() {
             </a>
             
             <div className="flex lg:hidden">
-
             <button
       onClick={toggleMenu}
       type="button"
-      className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
+      className="text-gray-500 hover:text-gray-600  focus:outline-none focus:text-gray-600"
       aria-label="toggle menu"
     >
       {!isOpen ? (
@@ -86,16 +98,15 @@ function NavBar() {
             </div>
           </div>
           <div
-            className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
+            className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
               isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'
             }`}
           >
-             <div className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center bg-slate-100 ${
+             <div className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center bg-slate-100 ${
     isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full '
   }`}
   >
    {NavRoutes}
-
 
 
             <div className="flex items-center mt-4 lg:mt-0">
@@ -107,7 +118,7 @@ function NavBar() {
                     alt="avatar"
                   />
                 </div>
-                <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">Khatab wedaa</h3>
+                <h3 className="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
               </button>
 
 

@@ -60,7 +60,7 @@ const Reviews = () => {
   return (<>
 
 
-<section className="bg-white dark:bg-gray-900">
+<section className="bg-white">
       <div className="container px-6 py-10 mx-auto">
       <h3 className='text-3xl font-extrabold text-center my-4 uppercase text-purple-950 mx-4'>Hear why <span className='text-red-600'>our community</span> loves ResQFood</h3>
 
@@ -83,8 +83,8 @@ const Reviews = () => {
               <img className="object-cover rounded-full w-14 h-14" src={review.img} alt="" />
 
               <div className="mt-4 text-center">
-                <h1 className="font-semibold text-gray-800 dark:text-white">{review.author}</h1>
-                <span className="text-sm text-gray-500 dark:text-gray-400">{review.role}</span>
+                <h1 className="font-semibold text-gray-800 ">{review.author}</h1>
+                <span className="text-sm text-gray-500 ">{review.role}</span>
               </div>
             </div>
           </div>
