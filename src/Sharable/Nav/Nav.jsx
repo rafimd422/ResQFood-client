@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/logo.png'
 import './nav.css'
 import { Link } from 'react-router-dom';
+import { AuthContext } from './../../Context/OurContext';
+import load from '../../assets/errorpic.json'
+import { Player } from '@lottiefiles/react-lottie-player';
 
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
+const {logOut, loading, user } = useContext(AuthContext)
+
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-
+	if(loading){
+		return <div className='h-screen w-screen flex justify-center items-center fixed bg-white'>
+			<Player
+		autoplay
+		loop
+		src={load}
+		style={{ height: '600px', width: '560px' }}
+	  />
+			</div>
+	}
 
   const NavRoutes = <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
     <NavLink
@@ -45,12 +60,16 @@ function NavBar() {
     >
       My Food Request
     </NavLink>
-<Link
+{user !== null ?
+      
+
+      <button onClick={logOut} className='px-3 py-2 mx-3 mt-2 font-semibold text-white transition-colors duration-300 transform rounded-md lg:mt-0 bg-green-800 hover:bg-green-600 w-fit ms-6'>Log Out</button>
+   : <Link
       to="/login"
       className="px-3 py-2 mx-3 mt-2 font-semibold text-white transition-colors duration-300 transform rounded-md lg:mt-0 bg-green-800 hover:bg-green-600 w-fit ms-6"
     >
       <button>Log In</button>
-    </Link>
+    </Link>}
   </div>
 
 
@@ -111,13 +130,13 @@ function NavBar() {
             <div className="flex items-center mt-4 lg:mt-0">
               <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
                 <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                  <img
-                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+     {user !== null && <img
+                    src={user?.photoURL}
                     className="object-cover w-full h-full"
                     alt="avatar"
-                  />
+                  />}
                 </div>
-                <h3 className="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
+                {user !==null && <h3 className="mx-2 text-gray-700 lg:hidden">{user.displayName}</h3>}
               </button>
 
 

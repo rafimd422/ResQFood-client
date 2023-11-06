@@ -1,12 +1,59 @@
 import { Link } from 'react-router-dom'
 import loginPic from './../../assets/loginpage.mp4'
 import { Helmet } from 'react-helmet-async'
+import { useContext } from 'react'
+import { AuthContext } from '../../Context/OurContext'
+import load from './../../assets/errorpic.json'
+import { Player } from '@lottiefiles/react-lottie-player'
+import Swal from 'sweetalert2'
 
 
 const Login = () => {
+
+	const {signIn, loading } = useContext(AuthContext)
+
+	if(loading){
+		return <div className='h-screen w-screen flex justify-center items-center fixed bg-white'>
+			<Player
+		autoplay
+		loop
+		src={load}
+		style={{ height: '600px', width: '560px' }}
+	  />
+			</div>
+	}
+
+
+	const handleLogin = (e) => {
+		e.preventDefault();
+		const form = e.target;
+		const email = form.email.value;
+		const password = form.password.value;
+		signIn(email, password)
+		  .then((result) => {
+			const loggedInUser = result.user;
+			console.log(loggedInUser);
+			Swal.fire({
+			  icon: "success",
+			  title: "Log in successfull",
+			  showConfirmButton: false,
+			  timer: 1500,
+			})  .catch((error) => {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: error.message,
+				  })
+				console.error('Error creating user:', error.message);
+			  });
+		})
+	}
+
+
+
+
   return (
     <>
-    
     <Helmet>
     <title>ResQFood | Log In</title>
   </Helmet>
@@ -35,7 +82,7 @@ const Login = () => {
 		<p className="px-3 text-gray-400">OR</p>
 		<hr className="w-full text-gray-400" />
 	</div>
-	<form className="space-y-8">
+	<form onSubmit={handleLogin} className="space-y-8">
 		<div className="space-y-4">
 			<div className="space-y-2">
 				<label htmlFor="email" className="block text-sm">Email address</label>
@@ -46,11 +93,11 @@ const Login = () => {
 					<label htmlFor="password" className="text-sm">Password</label>
 					<a rel="noopener noreferrer" href="#" className="text-xs hover:underline text-gray-400">Forgot password?</a>
 				</div>
-				<input type="password" name="password" id="password" placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md border-gray-700 text-gray-100 focus:border-blue-400" />
+				<input type="password" name="password" id="password" placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md border-gray-700 focus:border-blue-400" />
 			</div>
 
 		</div>
-		<button type="button" className="w-full px-8 py-3 font-semibold rounded-md hover:bg-gray-900 bg-gray-800 text-white">Sign in</button>
+		<button type="submit" className="w-full px-8 py-3 font-semibold rounded-md hover:bg-gray-900 bg-gray-800 text-white">Sign in</button>
         <p className="text-sm text-center text-gray-400">Dont have account?
 		<Link to={'/register'} rel="noopener noreferrer" className="focus:underline hover:underline text-green-600"> Sign up</Link>
 	</p>

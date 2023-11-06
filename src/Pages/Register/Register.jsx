@@ -14,13 +14,14 @@ const Register = () => {
 const { createUser, loading } = useContext(AuthContext)
 
 if(loading){
-    return <Player
+    return <div className='h-screen w-screen flex justify-center items-center fixed bg-white'>
+        <Player
     autoplay
     loop
     src={load}
     style={{ height: '600px', width: '560px' }}
-  >
-  </Player>
+  />
+        </div>
 }
 
 
