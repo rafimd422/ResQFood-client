@@ -28,7 +28,7 @@ const {user} = useContext(AuthContext)
       pickUplocation,
       expireDate,
       note
-    };
+    }; 
 
     axios.post('http://localhost:5000/foods', food)
     .then(res => {console.log(res)})
