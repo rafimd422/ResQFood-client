@@ -2,18 +2,20 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from './../../Context/OurContext';
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const AddFood = () => {
 
 const {user} = useContext(AuthContext)
-
+const navigate = useNavigate()
 
   const addProduct = (e) => {
     e.preventDefault();
     const form = e.target;
     const foodName = form.foodName.value;
     const foodImg = form.foodImage.value;
-    const quality = form.foodQuality.value;
+    const quantity = form.quantity.value;
     const pickUplocation = form.pickupLocation.value;
     const expireDate = form.expireDate.value;
     const note = form.shortNote.value;
@@ -24,16 +26,29 @@ const {user} = useContext(AuthContext)
       donatorImg: user.photoURL,
       foodName,
       foodImg,
-      quality,
+      status:'Available',
+      quantity,
       pickUplocation,
       expireDate,
       note
     }; 
 
     axios.post('http://localhost:5000/foods', food)
-    .then(res => {console.log(res)})
+    .then(res => {
+      
+      console.log(res.data)
+if(res.data?.acknowledged){
+  Swal.fire({
+    title: "Good job!",
+    text: "Food Added Successfully",
+    icon: "success"
+  });
+  navigate('/managefoods')
+}
+    })
     .catch(error => {
       console.log(error);
+
     });
 
   };
@@ -97,34 +112,20 @@ const {user} = useContext(AuthContext)
                       className="w-full rounded-md focus:ring border border-emerald-900 p-2 "
                     />
                   </div>
-
                   <div className="col-span-full sm:col-span-3">
-                    <label htmlFor="Food Quality" className="text-sm">
-                      Food Quality <span className="lg:inline hidden">:</span>
+                    <label htmlFor="quantity" className="text-sm">
+                      Food Quantity
                     </label>
-                    <select
-                      name="foodQuality"
-                      className=" border-b-2 border-black"
-                    >
-                      <option disabled selected>Select Quality</option>
-                      <option value="Fresh">Fresh and in good condition</option>
-                      <option value="NearExpiry">
-                        Near its use-by or best-before date
-                      </option>
-                      <option value="Not Opened">
-                        Not opened and in its original packaging
-                      </option>
-                      <option value="Appropriate Temperature">
-                        Stored at the appropriate temperature
-                      </option>
-                      <option value="No Spoilage">
-                        No signs of spoilage, mold, or unusual discoloration
-                      </option>
-                      <option value="Clear Labeling">
-                        Clear and legible product labels
-                      </option>
-                    </select>
+                    <input
+                      id="quantity"
+                      name="quantity"
+                      type="number"
+                      required
+                      placeholder="no. of person to be served"
+                      className="w-full rounded-md focus:ring border border-emerald-900 p-2 "
+                    />
                   </div>
+
 
                   <div className="col-span-full">
                     <label htmlFor="Pickup Location" className="text-sm">
