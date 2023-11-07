@@ -1,14 +1,11 @@
 
+import { Link } from 'react-router-dom';
 import Card from './Card';
 const FeaturedFoods = () => {
 
 
-
-
-
-
   return (
-    <div className='md:container md:mx-auto text-center mx-6'>
+    <div className='md:container md:mx-auto text-center mx-6 my-24'>
              <h3 className="md:text-4xl text-3xl font-extrabold text-center my-6 uppercase text-purple-950 mx-4">
           Our
           <span className="text-red-600"> Featured</span> Foods
@@ -23,11 +20,13 @@ const FeaturedFoods = () => {
         </p>
 
 
-<div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mx-2">
 
 <Card />
 
-</div>
+
+<Link to={'/availablefoods'} ><button className="text-center bg-purple-800 text-white font-semibold p-3 rounded-md mt-8 my-4">
+    Show All
+</button></Link>
     </div>
   )
 }
