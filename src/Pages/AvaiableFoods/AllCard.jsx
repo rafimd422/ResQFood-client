@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useState } from 'react';
+import load from '../../assets/errorpic.json'
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const AllCard = () => {
   const [sortData, setSortData] = useState(false);
@@ -12,18 +14,25 @@ const AllCard = () => {
     queryFn: () => axios.get("http://localhost:5000/foods"),
   });
 
-if(isLoading){
-    return <p>Loading...</p>
+  if(isLoading){
+    return <div className='h-screen w-screen flex justify-center items-center fixed bg-white'>
+        <Player
+    autoplay
+    loop
+    src={load}
+    style={{ height: '600px', width: '560px' }}
+  />
+        </div>
 }
 
   const filteredData = food?.data?.filter((foods) =>
-    foods.foodName.includes(searchResult)
+    foods?.foodName.toLowerCase().includes(searchResult)
   );
 
   if (sortData) {
     filteredData.sort((a, b) => new Date(a.expireDate) - new Date(b.expireDate));
   }
-
+ 
   return (
     <>
       <div className="flex justify-between items-center my-4">
@@ -43,7 +52,7 @@ if(isLoading){
             />
           </svg>
           <input
-            onChange={(e) => setSearchResult(e.target.value)}
+            onChange={(e) => {setSearchResult(e.target.value); setTitle(`${filteredData.length} result found for '${e.target.value}'`)}}
             type="search"
             name="search"
             placeholder="Search"
@@ -53,8 +62,9 @@ if(isLoading){
 
         <button
           onClick={() => {
-            setSortData(true);
+            setSortData(true)
             setTitle('Filtered Foods');
+
           }}
           className="bg-slate-100 active:bg-slate-200 hover:bg-slate-300 p-4 rounded-lg"
         >
@@ -62,7 +72,7 @@ if(isLoading){
         </button>
       </div>
 
-      <h3 className="mt-16 text-3xl font-bold">{title}</h3>
+      <h3 className={searchResult  === "" & sortData === false ? 'hidden' : "mt-16 text-3xl font-bold"}>{title}</h3>
 
       <div className="grid xl:grid-cols-4 my-16 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mx-2 gap-4">
         {filteredData.map((foods) => (
