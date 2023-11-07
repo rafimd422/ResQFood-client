@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { AuthContext } from './../../Context/OurContext';
+import { AuthContext } from "./../../Context/OurContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const AddFood = () => {
-
-const {user} = useContext(AuthContext)
-const navigate = useNavigate()
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const addProduct = (e) => {
     e.preventDefault();
@@ -22,35 +21,33 @@ const navigate = useNavigate()
 
     const food = {
       donatorName: user.displayName,
-      email: user.email, 
+      email: user.email,
       donatorImg: user.photoURL,
       foodName,
       foodImg,
-      status:'Available',
+      status: "Available",
       quantity,
       pickUplocation,
       expireDate,
-      note
-    }; 
+      note,
+    };
 
-    axios.post('http://localhost:5000/foods', food)
-    .then(res => {
-      
-      console.log(res.data)
-if(res.data?.acknowledged){
-  Swal.fire({
-    title: "Good job!",
-    text: "Food Added Successfully",
-    icon: "success"
-  });
-  navigate('/managefoods')
-}
-    })
-    .catch(error => {
-      console.log(error);
-
-    });
-
+    axios
+      .post("http://localhost:5000/foods", food)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data?.acknowledged) {
+          Swal.fire({
+            title: "Good job!",
+            text: "Food Added Successfully",
+            icon: "success",
+          });
+          navigate("/managefoods");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -83,7 +80,12 @@ if(res.data?.acknowledged){
               <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm">
                 <div className="space-y-2 col-span-full lg:col-span-1">
                   <p className="font-bold text-center text-3xl">Donate Food</p>
-                  <p className="text-sm lg:block hidden"> By joining ResQFood, you become part of a community that is changing the way we think about food, resourcefulness, and compassion</p>
+                  <p className="text-sm lg:block hidden">
+                    {" "}
+                    By joining ResQFood, you become part of a community that is
+                    changing the way we think about food, resourcefulness, and
+                    compassion
+                  </p>
                 </div>
                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                   <div className="col-span-full sm:col-span-3">
@@ -126,13 +128,12 @@ if(res.data?.acknowledged){
                     />
                   </div>
 
-
                   <div className="col-span-full">
                     <label htmlFor="Pickup Location" className="text-sm">
                       Pickup Location
                     </label>
                     <input
-                      id="Pickup Location"
+                      id="pickupLocation"
                       name="pickupLocation"
                       type="text"
                       placeholder="Pickup Location"

@@ -6,6 +6,7 @@ const Card = () => {
     queryKey: ["foods"],
     queryFn: () => axios.get("http://localhost:5000/foods"),
   });
+ foods?.data.sort((a,b) => b.quantity - a.quantity)
 
   return (
     <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mx-2 gap-4">
@@ -20,10 +21,8 @@ const Card = () => {
               src={foods.donatorImg}
               className="h-12 w-12 ms-2 my-4 rounded-full object-cover"
             />
-
             <h3 className="text-md font-medium">{foods.donatorName}</h3>
           </div>
-
           <img
             className="object-cover object-center w-full h-56"
             src={foods.foodImg}
@@ -38,6 +37,7 @@ const Card = () => {
             <p className="py-2 text-gray-700">
               {foods?.note?.slice(0, 170)}...
             </p>
+            <p className="text-start my-2">Qty: {foods.quantity}</p>
             <div className="flex items-center mt-4 text-gray-700 ">
               <svg
                 aria-label="location pin icon"
