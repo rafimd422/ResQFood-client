@@ -5,6 +5,7 @@ const Card = () => {
   const { data: foods } = useQuery({
     queryKey: ["foods"],
     queryFn: () => axios.get("http://localhost:5000/foods"),
+    refetchOnWindowFocus: 'always',
   });
  foods?.data.sort((a,b) => b.quantity - a.quantity)
 

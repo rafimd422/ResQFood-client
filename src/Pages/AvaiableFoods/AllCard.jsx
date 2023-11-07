@@ -12,6 +12,7 @@ const AllCard = () => {
   const { data: food, isLoading } = useQuery({
     queryKey: ["Available-Foods"],
     queryFn: () => axios.get("http://localhost:5000/foods"),
+  refetchOnWindowFocus: 'always',
   });
 
   if(isLoading){
@@ -22,7 +23,7 @@ const AllCard = () => {
     src={load}
     style={{ height: '600px', width: '560px' }}
   />
-        </div>
+</div>
 }
 
   const filteredData = food?.data?.filter((foods) =>
