@@ -5,15 +5,16 @@ import { useQuery } from "@tanstack/react-query";
 import load from "./../../assets/errorpic.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ManageFoods = () => {
   const { user } = useContext(AuthContext);
   const url = `http://localhost:5000/foods?email=${user?.email}`;
-  const { data: myFoods, isLoading } = useQuery({
+  const { data: myFoods, isLoading,refetch } = useQuery({
     queryKey: ["Manage-Foods"],
     queryFn: () => axios.get(url),
+    refetchOnWindowFocus: true,
     refetchOnMount: true,
-    refetchOnWindowFocus: "always",
   });
 
   if (isLoading) {
@@ -26,10 +27,53 @@ const ManageFoods = () => {
           style={{ height: "600px", width: "560px" }}
         />
       </div>
+      
     );
   }
+ if(myFoods?.data?.length === 0){
+  refetch()
+ }
 
-  console.log(myFoods?.data?.length);
+
+const handleDelete = id => {
+  console.log(id)
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+axios.delete(`http://localhost:5000/foods/${id}`)
+.then(res => {
+  console.log(res.data)
+  if(res.data.deletedCount > 0){
+  Swal.fire({
+    title: "Deleted!",
+    text: "Your file has been deleted.",
+    icon: "success"
+  });
+refetch()
+}
+})
+}
+});
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <>
@@ -136,7 +180,6 @@ const ManageFoods = () => {
                       </td>
                       <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60">
-                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
                           <h2 className="text-sm font-normal text-emerald-500">
                             {foods.status}
                           </h2>
@@ -154,14 +197,14 @@ const ManageFoods = () => {
       
 
       
-                          <button class="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none">
+                          <button onClick={()=> handleDelete(foods._id)} className="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="w-5 h-5"
+                              className="w-5 h-5"
                             >
                               <path
                                 stroke-linecap="round"
@@ -171,14 +214,14 @@ const ManageFoods = () => {
                             </svg>
                           </button>
 
-                          <button class="text-gray-500 transition-colors duration-200 hover:text-yellow-500 focus:outline-none">
+                          <button className="text-gray-500 transition-colors duration-200 hover:text-yellow-500 focus:outline-none">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="w-5 h-5"
+                              className="w-5 h-5"
                             >
                               <path
                                 stroke-linecap="round"
