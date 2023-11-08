@@ -9,6 +9,7 @@ import FoodRequest from '../Pages/FoodRequest/FoodRequest';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import Home from './../Pages/Home/Home';
+import UpdateFood from './../Pages/UpdateFood/UpdateFood';
 
 const Root = createBrowserRouter([
     {
@@ -37,6 +38,11 @@ const Root = createBrowserRouter([
           element: <FoodRequest />
         },
         {
+          path:'/update/:id',
+          element: <UpdateFood />,
+          loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+        },
+        {
           path:'/login',
           element: <Login />
         },
@@ -44,6 +50,7 @@ const Root = createBrowserRouter([
           path:'/register',
           element: <Register />
         },
+
       ]
     },
   ]);
