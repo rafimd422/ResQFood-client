@@ -1,16 +1,12 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "./../../Context/OurContext";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const FoodDetails = () => {
   const details = useLoaderData();
   const { user } = useContext(AuthContext);
-
-console.log(user)
-
-
-
-
 
 const foodRequest = e => {
     e.preventDefault()
@@ -24,13 +20,27 @@ const foodRequest = e => {
     const donatorEmail = form.donatorEmail.value;
     const pickUplocation = form.pickupLocation.value;
     const expireDate = form.expireDate.value;
-    const adissionalNote = form.shortNote.value;
+    const aditionalNote = form.shortNote.value;
     const donationMoney = form.donationMoney.value;
 
 const foodCollection = {
-    requesterEmail,requesterName: user?.displayName, requesterImage: user?.photoURL, requestDate, status: 'Available'
+    requesterEmail, requesterName: user?.displayName, requesterImage: user?.photoURL, requestDate, status: 'Available', foodName, foodImg, donatorName, donatorEmail, pickUplocation, expireDate, aditionalNote,donationMoney, id
 }
 console.log(foodCollection)
+axios.post('http://localhost:5000/reqfoods',foodCollection)
+.then(res => {
+  console.log(res.data)
+if(res.data.acknowledged){
+  Swal.fire({
+    icon: "success",
+    title: "Request Successfull",
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
+})
+
+//  /foodreqlist will redirected
 }
   return (
     <>
@@ -246,6 +256,23 @@ console.log(foodCollection)
                               className="w-full rounded-md focus:ring border border-emerald-900 p-2 "
                             />
                           </div>
+                          <div className="col-span-full">
+                            <label
+                              htmlFor="pickupLocation"
+                              className="text-sm"
+                            >
+                              Pick Up Location
+                            </label>
+                            <input
+                              disabled
+                              defaultValue={details.pickUplocation}
+                              id="pickupLocation"
+                              name="pickupLocation"
+                              type="text"
+                              placeholder="Pickup Location"
+                              className="w-full rounded-md focus:ring border border-emerald-900 p-2 "
+                            />
+                          </div>
 
                           <div className="col-span-full sm:col-span-2">
                             <label htmlFor="requestDate" className="text-sm">
@@ -272,6 +299,7 @@ console.log(foodCollection)
                               id="note"
                               type="text"
                               name="shortNote"
+                              required
                               placeholder="Additional Notes/Description"
                               className="w-full rounded-md focus:ring border border-emerald-900 p-2 "
                             />
@@ -286,6 +314,7 @@ console.log(foodCollection)
                             </label>
                             <input
                               id="donationMoney"
+                              required
                               name="donationMoney"
                               type="number"
                               placeholder="Amount Of Donation Money"
