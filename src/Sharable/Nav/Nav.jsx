@@ -129,17 +129,15 @@ const {logOut, loading, user } = useContext(AuthContext)
 
             <div className="flex items-center mt-4 lg:mt-0">
               <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-                <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-     {user !== null && <img
+              {user !== null &&       <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                <img
                     src={user?.photoURL}
                     className="object-cover w-full h-full"
                     alt="avatar"
-                  />}
-                </div>
+                  />
+                </div>}
                 {user !==null && <h3 className="mx-2 text-gray-700 lg:hidden">{user.displayName}</h3>}
               </button>
-
-
               </div>
             </div>
           </div>
