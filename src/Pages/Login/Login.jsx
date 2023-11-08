@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import loginPic from './../../assets/loginpage.mp4'
 import { Helmet } from 'react-helmet-async'
 import { useContext } from 'react'
@@ -11,7 +11,7 @@ import auth from '../../Firebase/firebase.config'
 
 
 const Login = () => {
-
+const location = useLocation()
 	const {signIn, loading } = useContext(AuthContext)
 const navigate = useNavigate()
 	if(loading){
@@ -40,15 +40,22 @@ const navigate = useNavigate()
 			  title: "Log in successfull",
 			  showConfirmButton: false,
 			  timer: 1500,
-			})  .catch((error) => {
-				Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: error.message,
-				  })
-				console.error('Error creating user:', error.message);
-			  });
-		})
+			})
+			if(location.pathname !== "/login"){
+				navigate(location.pathname)
+			  }else{
+				navigate('/')
+			  }
+		}
+		)
+		.catch((error) => {
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: error.message,
+			  })
+			console.error('Error creating user:', error.message);
+		  });
 	}
 
 
@@ -65,7 +72,11 @@ const navigate = useNavigate()
 			showConfirmButton: false,
 			timer: 1500
 		  })
-		  navigate('/')
+		  if(location.pathname !== "/login"){
+			navigate(location.pathname)
+		  }else{
+			navigate('/')
+		  }
 	  
 		}) .catch(error =>{
 		  Swal.fire({

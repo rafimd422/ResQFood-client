@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import load from '../../assets/errorpic.json'
 import { Player } from '@lottiefiles/react-lottie-player';
+import { Link } from 'react-router-dom';
 
 const AllCard = () => {
   const [sortData, setSortData] = useState(false);
@@ -129,9 +130,11 @@ const AllCard = () => {
                 <p className="text-start my-2 text-sm text-slate-500">
                   Expire Date: {new Date(foods.expireDate).toDateString()}
                 </p>
-                <button className="btn bg-purple-800 px-2 hover:bg-purple-700 active:bg-purple-950 rounded-md text-slate-200 font-bold">
+                <Link to={`/details/${foods._id}`}>
+              <button className="btn bg-purple-800 px-2 hover:bg-purple-700 active:bg-purple-950 rounded-md text-slate-200 font-bold">
                   View Details
                 </button>
+                </Link>
               </div>
               <br />
               <p className="bg-green-600 p-2 rounded-md text-white font-bold">

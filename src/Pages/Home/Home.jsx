@@ -15,7 +15,6 @@ const Home = () => {
 <FeaturedFoods />
 <Reviews/>
 <Sponsors />
-
 </>
   )
 }

@@ -48,6 +48,7 @@ createUser(email, password)
           showConfirmButton: false,
           timer: 1500
         })
+        navigate('/')
       }).catch((error) => {
         console.log(error.message)
       });
