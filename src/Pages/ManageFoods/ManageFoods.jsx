@@ -142,7 +142,7 @@ const ManageFoods = () => {
                     {myFoods?.data.map(foods => (
                       <tr key={foods._id}>
                         <td>
-                          {" "}
+                          
                           <img
                             className="object-cover w-40 h-32 rounded-md"
                             src={foods.foodImg}

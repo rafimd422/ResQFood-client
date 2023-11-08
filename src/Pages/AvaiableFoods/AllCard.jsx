@@ -129,10 +129,10 @@ const AllCard = () => {
                 <p className="text-start my-2 text-sm text-slate-500">
                   Expire Date: {new Date(foods.expireDate).toDateString()}
                 </p>
-                <button className="btn bg-purple-800 px-2 rounded-md text-slate-200 font-bold">
+                <button className="btn bg-purple-800 px-2 hover:bg-purple-700 active:bg-purple-950 rounded-md text-slate-200 font-bold">
                   View Details
                 </button>
-              </div>{" "}
+              </div>
               <br />
               <p className="bg-green-600 p-2 rounded-md text-white font-bold">
                 {foods.status}

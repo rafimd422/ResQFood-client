@@ -81,7 +81,6 @@ const AddFood = () => {
                 <div className="space-y-2 col-span-full lg:col-span-1">
                   <p className="font-bold text-center text-3xl">Donate Food</p>
                   <p className="text-sm lg:block hidden">
-                    {" "}
                     By joining ResQFood, you become part of a community that is
                     changing the way we think about food, resourcefulness, and
                     compassion

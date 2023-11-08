@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const Card = () => {
   const { data: foods } = useQuery({
@@ -62,10 +63,12 @@ const Card = () => {
             </div>
             <div className="flex justify-between my-2">
               <p className="text-start my-2">Expire Date: {foods.expireDate}</p>
-              <button className="btn bg-purple-800 px-2 rounded-md text-slate-200 font-bold">
-                View Details
-              </button>
-            </div>{" "}
+             <Link to={`/details/${foods._id}`}>
+              <button className="btn bg-purple-800 px-2 hover:bg-purple-700 active:bg-purple-950 rounded-md text-slate-200 font-bold">
+                  View Details
+                </button>
+                </Link>
+            </div>
             <br />
             <p className="bg-green-600 p-2 rounded-md text-white font-bold">
               {foods.status}

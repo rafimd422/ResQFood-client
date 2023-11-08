@@ -20,7 +20,7 @@ const Banner = () => {
       </p>
 
       <div className="mt-8 flex flex-wrap justify-center gap-4">
-        <Link to={'/availablefoods'}
+        <Link to={'/addfoods'}
           className="block rounded border bg-purple-950 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 w-fit"
          
         >
