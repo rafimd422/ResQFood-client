@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { AuthContext } from './../../Context/OurContext';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const FoodRequest = () => {
 
@@ -14,10 +14,37 @@ const { data: requestedFood , refetch } = useQuery({
 refetchOnWindowFocus: 'always',
 });
 
-// const {_id, requesterEmail, requesterName, requesterImage, requestDate, status, foodName, foodImg, donatorName, donatorEmail, pickUplocation, expireDate, aditionalNote, donationMoney, id} = requestedFood?.data
 
 if (requestedFood?.data?.length === 0) {
   refetch();
+}
+
+const cancelreq = id => {
+console.log(id)
+
+Swal.fire({
+  title: "Are you sure?",
+  text: "You want to cancel this food request?",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes,Cancel!"
+}).then((result) => {
+  if (result.isConfirmed) {
+axios.delete(`http://localhost:5000/reqfoods/${id}`)
+.then(res => {
+  console.log(res.data)
+  if (res.data.deletedCount > 0) {
+    Swal.fire({
+      title: "Cancelled!",
+      text: "Your request has been Cancelled",
+      icon: "success"
+    });
+    refetch()
+  }
+})
+}});
 }
 
 
@@ -26,7 +53,7 @@ if (requestedFood?.data?.length === 0) {
 <Helmet>
     <title>ResQFood | Food Requests</title>
   </Helmet>
-  <div className="sm:container px-4 mx-auto my-20">
+  <div className="sm:container px-4 mx-auto my-20 min-h-[80vh]">
         <div className="flex items-center gap-x-3  justify-between">
 <div className="flex flex-col">
 <h3 className="text-3xl font-extrabold text-center my-4 uppercase text-purple-950 mx-4">
@@ -139,8 +166,7 @@ if (requestedFood?.data?.length === 0) {
                         </td>
 
                         <td className="px-4 py-4 text-sm whitespace-nowrap">
-                     
-                             {reqFood.status === 'Pending' &&  <button className="btn">Cancel Request</button>}
+                             {reqFood.status === 'Pending' &&  <button onClick={() => cancelreq(reqFood._id)} className="btn">Cancel Request</button>}
                         </td>
                       </tr>
                     ))}
@@ -154,5 +180,6 @@ if (requestedFood?.data?.length === 0) {
 </>
   )
 }
+
 
 export default FoodRequest
