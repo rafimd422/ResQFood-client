@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
-
+import errorPic from '../../assets/lottieflow-404-12-5-000000-easey.json'
+import { Player } from "@lottiefiles/react-lottie-player";
 
 const ErrorPage = () => {
   return (
 <div className="grid h-screen px-4 bg-white place-content-center">
-  <div className="text-center">
-    <h1 className="font-black text-gray-200 text-9xl">404</h1>
 
+<Player
+  autoplay
+  loop
+  src={errorPic}
+  style={{ height: '300px', width: '300px' }}
+>
+</Player>
+
+  <div className="text-center">
     <p className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
       Uh-oh!
     </p>
