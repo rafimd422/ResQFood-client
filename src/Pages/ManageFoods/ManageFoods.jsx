@@ -73,9 +73,6 @@ const ManageFoods = () => {
         <title>ResQFood | Manage Foods</title>
       </Helmet>
 
-      {/* modal dialog  */}
-
-      {/* modal dialog  */}
 
       <div className="sm:container px-4 mx-auto my-20">
         <div className="flex items-center gap-x-3">
@@ -98,7 +95,7 @@ const ManageFoods = () => {
                         className="py-3.5 px-4 text-sm font-normal text-left text-gray-500"
                       >
                         <div className="flex items-center gap-x-3">
-                          <span>Food Name</span>
+                          <span>Food Image</span>
                         </div>
                       </th>
                       <th
@@ -221,7 +218,6 @@ const ManageFoods = () => {
                       </tr>
                     ))}
 
-                    {/* Repeat the above structure for additional rows */}
                   </tbody>
                 </table>
               </div>

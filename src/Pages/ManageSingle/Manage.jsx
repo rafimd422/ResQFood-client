@@ -1,9 +1,20 @@
 import React from 'react'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 
 const Manage = () => {
     const data = useLoaderData()
     console.log(data)
+const navigate = useNavigate()
+
+
+if(data.length === 0){
+  return <div className="h-[80vh] flex flex-col justify-center items-center">
+<p className="font-bold text-2xl">
+There have been no requests for this Food Item
+</p> 
+<button onClick={()=> navigate(-1)} className='btn my-4'>Go Back</button>
+ </div>
+}
   return (
 
 <div>
