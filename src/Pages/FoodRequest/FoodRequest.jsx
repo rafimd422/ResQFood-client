@@ -10,7 +10,7 @@ const FoodRequest = () => {
 const { user } = useContext(AuthContext)
 const { data: requestedFood , refetch } = useQuery({
   queryKey: ['Requested-Food'],
-  queryFn: () => axios.get(`http://localhost:5000/reqfoods?email=${user.email}`),
+  queryFn: () => axios.get(`https://resqfoodserver.vercel.app/reqfoods?email=${user.email}`),
 refetchOnWindowFocus: 'always',
 });
 
@@ -32,7 +32,7 @@ Swal.fire({
   confirmButtonText: "Yes,Cancel!"
 }).then((result) => {
   if (result.isConfirmed) {
-axios.delete(`http://localhost:5000/reqfoods/${id}`)
+axios.delete(`https://resqfoodserver.vercel.app/reqfoods/${id}`)
 .then(res => {
   console.log(res.data)
   if (res.data.deletedCount > 0) {

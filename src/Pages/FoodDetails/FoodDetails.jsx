@@ -27,7 +27,7 @@ const foodCollection = {
     requesterEmail, requesterName: user?.displayName, requesterImage: user?.photoURL, requestDate, status: 'Pending', foodName, foodImg, donatorName, donatorEmail, pickUplocation, expireDate, aditionalNote,donationMoney, id
 }
 console.log(foodCollection)
-axios.post('http://localhost:5000/reqfoods',foodCollection)
+axios.post('https://resqfoodserver.vercel.app/reqfoods',foodCollection)
 .then(res => {
   console.log(res.data)
 if(res.data.acknowledged){

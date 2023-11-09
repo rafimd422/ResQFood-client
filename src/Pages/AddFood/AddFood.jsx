@@ -33,7 +33,7 @@ const AddFood = () => {
     };
 
     axios
-      .post("http://localhost:5000/foods", food)
+      .post("https://resqfoodserver.vercel.app/foods", food)
       .then((res) => {
         console.log(res.data);
         if (res.data?.acknowledged) {

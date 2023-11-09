@@ -44,17 +44,17 @@ const Root = createBrowserRouter([
         {
           path:'/update/:id',
           element: <UpdateFood />,
-          loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+          loader: ({params}) => fetch(`https://resqfoodserver.vercel.app/foods/${params.id}`)
         },
         {
           path:'/details/:id',
           element: <PrivateRoute><FoodDetails /></PrivateRoute>,
-          loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+          loader: ({params}) => fetch(`https://resqfoodserver.vercel.app/foods/${params.id}`)
         },
         {
           path:'/manage/:id',
           element: <PrivateRoute><Manage /></PrivateRoute>,
-          loader: ({params}) => fetch(`http://localhost:5000/reqfoods/${params.id}`)
+          loader: ({params}) => fetch(`https://resqfoodserver.vercel.app/reqfoods/${params.id}`)
         },
         {
           path:'/login',

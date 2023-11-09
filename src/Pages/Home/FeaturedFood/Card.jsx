@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const Card = () => {
   const { data: foods } = useQuery({
     queryKey: ["foods"],
-    queryFn: () => axios.get("http://localhost:5000/foods"),
+    queryFn: () => axios.get("https://resqfoodserver.vercel.app/foods"),
     refetchOnWindowFocus: 'always',
   });
  foods?.data.sort((a,b) => b.quantity - a.quantity)

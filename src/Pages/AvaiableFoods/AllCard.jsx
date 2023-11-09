@@ -12,7 +12,7 @@ const AllCard = () => {
   
   const { data: food, isLoading } = useQuery({
     queryKey: ["Available-Foods"],
-    queryFn: () => axios.get("http://localhost:5000/foods"),
+    queryFn: () => axios.get("https://resqfoodserver.vercel.app/foods"),
   refetchOnWindowFocus: 'always',
   });
 

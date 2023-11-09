@@ -36,7 +36,7 @@ const updateFood = e => {
     denyButtonText: `Don't save`
   }).then((result) => {
     if (result.isConfirmed) {
- axios.put(`http://localhost:5000/foods/${foods?._id}`, food)
+ axios.put(`https://resqfoodserver.vercel.app/foods/${foods?._id}`, food)
    .then((res) => {
     console.log(res.data)
   if(res.data.modifiedCount > 0){

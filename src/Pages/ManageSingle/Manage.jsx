@@ -21,14 +21,14 @@ const Manage = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .patch(`http://localhost:5000/reqfoods/${data._id}`, {
+          .patch(`https://resqfoodserver.vercel.app/reqfoods/${data._id}`, {
             status: "Delevered",
           })
           .then((res) => {
             console.log(res.data);
             if (res.data?.modifiedCount > 0) {
               axios
-                .delete(`http://localhost:5000/foods/${data.id}`)
+                .delete(`https://resqfoodserver.vercel.app/foods/${data.id}`)
                 .then((res) => {
                   console.log(res.data);
                   if (res.data.deletedCount > 0) {

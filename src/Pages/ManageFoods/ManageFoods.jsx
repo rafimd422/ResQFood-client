@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const ManageFoods = () => {
   const { user } = useContext(AuthContext);
-  const url = `http://localhost:5000/foods?email=${user?.email}`;
+  const url = `https://resqfoodserver.vercel.app/foods?email=${user?.email}`;
   const {
     data: myFoods,
     isLoading,
@@ -50,7 +50,7 @@ const ManageFoods = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/foods/${id}`).then((res) => {
+        axios.delete(`https://resqfoodserver.vercel.app/foods/${id}`).then((res) => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
             Swal.fire({
