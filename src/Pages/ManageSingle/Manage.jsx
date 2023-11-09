@@ -1,10 +1,47 @@
+import axios from 'axios'
 import React from 'react'
 import { useLoaderData, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const Manage = () => {
     const data = useLoaderData()
     console.log(data)
 const navigate = useNavigate()
+
+const handleFoodRequst = () => {
+  console.log(data.donatorEmail)
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You Successfully Delevered This Food?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes"
+  }).then((result) => {
+    if (result.isConfirmed) {
+  axios.patch(`http://localhost:5000/reqfoods/${data._id}`, {status: 'Delevered'})
+  .then(res => {
+    console.log(res.data)
+    if(res.data?.modifiedCount > 0){
+      axios.delete(`http://localhost:5000/foods/${data.id}`).then((res) => {
+        console.log(res.data);
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            title: "Great Job",
+            icon: "success"
+          })
+          window.location.reload();
+        }
+      });
+
+  }
+  })
+  .catch(error => console.log(error.message))
+}
+});
+}
+
 
 
 if(data.length === 0){
@@ -84,7 +121,7 @@ There have been no requests for this Food Item
     </div>
 <div className="container mx-auto flex justify-between">
   <p></p>
-<button className={data.status === 'Delevered' ? 'hidden' : 'btn my-4'}>Mark As Delevered</button>
+<button onClick={handleFoodRequst} className={data.status === 'Delevered' ? 'hidden' : 'btn my-4 bg-green-700 hover:bg-green-900 active:bg-green-800 text-white font-bold'}>Mark As Delevered</button>
 </div>
     </div>
 </div>
