@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "./../../Context/OurContext";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const FoodDetails = () => {
   const details = useLoaderData();
   const { user } = useContext(AuthContext);
-
+const navigate = useNavigate()
 const foodRequest = e => {
     e.preventDefault()
     const form = e.target;
@@ -24,7 +24,7 @@ const foodRequest = e => {
     const donationMoney = form.donationMoney.value;
 
 const foodCollection = {
-    requesterEmail, requesterName: user?.displayName, requesterImage: user?.photoURL, requestDate, status: 'Available', foodName, foodImg, donatorName, donatorEmail, pickUplocation, expireDate, aditionalNote,donationMoney, id
+    requesterEmail, requesterName: user?.displayName, requesterImage: user?.photoURL, requestDate, status: 'Pending', foodName, foodImg, donatorName, donatorEmail, pickUplocation, expireDate, aditionalNote,donationMoney, id
 }
 console.log(foodCollection)
 axios.post('http://localhost:5000/reqfoods',foodCollection)
@@ -37,10 +37,10 @@ if(res.data.acknowledged){
     showConfirmButton: false,
     timer: 1500
   });
+  navigate('/foodreqlist')
 }
 })
 
-//  /foodreqlist will redirected
 }
   return (
     <>

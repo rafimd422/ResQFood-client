@@ -55,6 +55,9 @@ const navigate = useNavigate()
 				text: error.message,
 			  })
 			console.error('Error creating user:', error.message);
+			setTimeout(() => {
+				window.location.reload()
+			}, 4000)
 		  });
 	}
 
