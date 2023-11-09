@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Card = () => {
   const { data: foods } = useQuery({
@@ -10,10 +11,31 @@ const Card = () => {
   });
  foods?.data.sort((a,b) => b.quantity - a.quantity)
 
+
+ const fadeInAnimationVariants = {
+  initial: {
+    opacity: 0,
+    y: 100,
+  },
+  animate: (index) =>{
+  return {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.1 * index,
+    },
+  };
+}
+}
+
   return (
     <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mx-2 gap-4">
-      {foods?.data.slice(0,6).map((foods) => (
-        <div
+      
+      {foods?.data.slice(0,6).map((foods, idx) => (
+        <motion.div variants={fadeInAnimationVariants}
+        initial="initial"
+        whileInView="animate"
+        custom={idx}
           key={foods._id}
           className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg"
         >
@@ -74,7 +96,7 @@ const Card = () => {
               {foods.status}
             </p>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   );
