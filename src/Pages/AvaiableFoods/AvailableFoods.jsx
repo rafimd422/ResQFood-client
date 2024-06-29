@@ -21,11 +21,10 @@ const AvailableFoods = () => {
         Browse our selected food items below. These items are ready for donation to support those in need within our community.
         </p>
 
-
-
 <AllCard />
 
-    </div>    </>
+    </div>    
+  </>
   );
 };
 

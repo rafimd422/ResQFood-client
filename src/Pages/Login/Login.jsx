@@ -50,14 +50,14 @@ const navigate = useNavigate()
 		)
 		.catch((error) => {
 			Swal.fire({
-				icon: 'error',
-				title: 'Oops...',
-				text: error.message,
-			  })
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: error.message === 'Firebase: Error (auth/invalid-login-credentials).' ? 'Invalid Login Credentials' : error.message,
+			});
 			console.error('Error creating user:', error.message);
 			setTimeout(() => {
-				window.location.reload()
-			}, 4000)
+			  window.location.reload();
+			}, 4000);
 		  });
 	}
 
