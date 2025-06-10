@@ -168,8 +168,7 @@ const AddFood = () => {
                   <button
                     type="submit"
                     className="bg-purple-900 w-full col-span-full hover:bg-purple-800 active:bg-purple-900 text-white rounded-md mx-auto p-2 text-lg font-bold"
-                  >
-                    Add Food
+                  > Add Food
                   </button>
                 </div>
               </fieldset>
